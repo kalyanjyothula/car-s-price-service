@@ -4,7 +4,6 @@ backend/venv/
 frontend/.env
 .vscode/
 backend/__pycache__/
-backend/artifacts/
 backend/catboost_info/
 backend/data/
 backend/dist/

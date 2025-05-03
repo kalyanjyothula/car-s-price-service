@@ -1,6 +1,7 @@
 import logging
 import sys
 import os
+sys.path.append(os.path.join(os.path.dirname(__file__), "."))
 import joblib
 from dotenv import load_dotenv
 from fastapi.middleware.cors import CORSMiddleware
@@ -31,7 +32,9 @@ app.add_middleware(
 
 
 
-model = joblib.load("artifacts\\model.pkl")
+# model = joblib.load("artifacts\\model.pkl")
+model_path = os.path.join("artifacts", "model.pkl")
+model = joblib.load(model_path)
 
 
 @api_router.get("/data-test")

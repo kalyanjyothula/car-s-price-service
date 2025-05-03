@@ -8,8 +8,6 @@ import {
   YearsList,
   carBrands,
   carModels,
-  gearsBox,
-  noOfCylinders,
   steeringType,
   superCharger,
   features,
@@ -41,7 +39,7 @@ export default function Home() {
   const renderCarModels = useMemo(() => carModels[company], [company]);
 
   const renderSeats = useMemo(() => {
-    let st = [];
+    const st = [];
     for (const [key, value] of Object.entries(seatsByGroup)) {
       if (value.includes(model)) st.push({ label: `${key}`, value: `${key}` });
     }
@@ -49,7 +47,7 @@ export default function Home() {
   }, [model]);
 
   const renderGearBox = useMemo(() => {
-    let st = [];
+    const st = [];
     for (const [key, value] of Object.entries(gearBoxGroup)) {
       if (value.includes(model)) st.push({ label: `${key}`, value: `${key}` });
     }
@@ -57,7 +55,7 @@ export default function Home() {
   }, [model]);
 
   const renderCylinder = useMemo(() => {
-    let st = [];
+    const st = [];
     for (const [key, value] of Object.entries(cylinderGroup)) {
       if (value.includes(model)) st.push({ label: `${key}`, value: `${key}` });
     }
@@ -101,7 +99,7 @@ export default function Home() {
     };
 
     const missingFields = Object.entries(requiredFields).filter(
-      ([_, value]) => !value
+      ([, value]) => !value
     );
 
     console.log(missingFields, topSpeed, maxPower, maxTorque);
@@ -137,8 +135,8 @@ export default function Home() {
       });
 
       if (res.status === 200) {
-        const { selling_price } = res?.data;
-        selling_price && setResult(selling_price);
+        const { selling_price } = res?.data || {};
+        if (selling_price) setResult(selling_price);
       }
     } catch (error) {
       console.log(error);

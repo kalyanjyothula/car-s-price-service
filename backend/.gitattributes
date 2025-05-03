@@ -1,0 +1,2 @@
+artifacts/model.pkl filter=lfs diff=lfs merge=lfs -text
+artifacts/preprocessor.pkl filter=lfs diff=lfs merge=lfs -text
