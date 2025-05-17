@@ -73,9 +73,9 @@ def predict(data: carsInputModel.CarsInput):
 app.include_router(api_router, prefix="/api")
 
 
-# reactBuild = os.getenv('REACT_APP_PATH')
-# # print(BASE_DIR, "Base")
-# if(reactBuild): 
-#     fe_path = BASE_DIR / reactBuild  # correct way to join paths
-#     # print(f"Serving frontend from: {fe_path}")
-#     app.mount('/', StaticFiles(directory=fe_path, html=True))
+reactBuild = os.getenv('REACT_APP_PATH')
+# print(BASE_DIR, "Base")
+if(reactBuild): 
+    fe_path = BASE_DIR / reactBuild  # correct way to join paths
+    # print(f"Serving frontend from: {fe_path}")
+    app.mount('/', StaticFiles(directory=fe_path, html=True))
