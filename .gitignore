@@ -12,3 +12,16 @@ backend/frontend/
 backend/**/__pycache__/
 backend/data/.ipynb_checkpoints/cars_dekho_cleaned_data-checkpoint.csv
 backend/data/.ipynb_checkpoints/feature_enginnered_data-checkpoint.csv
+
+# Docker-related files
+Dockerfile
+docker-compose.yml
+*.log
+*.pid
+*.env
+.env.*
+.dockerignore
+
+# Docker volumes or build artifacts (if applicable)
+**/tmp/
+**/cache/
