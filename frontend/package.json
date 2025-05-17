@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "mv-build": "npm run build && rmdir /s /q ..\\backend\\frontend && xcopy /E /I dist ..\\backend\\frontend"
+    "mv-build": "npm run build && rm -rf ../backend/frontend && cp -r dist ../backend/frontend"
   },
   "dependencies": {
     "@radix-ui/react-checkbox": "^1.2.3",
@@ -29,7 +29,7 @@
     "framer-motion": "^12.9.4",
     "lucide-react": "^0.501.0",
     "papaparse": "^5.5.2",
-     "react": "^19.0.0",
+    "react": "^19.0.0",
     "react-confetti": "^6.4.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^6.30.0",
