@@ -16,11 +16,11 @@ class PredictPipeline:
             logging.info(f"Predict started for {features}")
             # model_path=os.path.join("artifacts","model.pkl")
             print("Base Dir", BASE_DIR)
-            model_path = BASE_DIR / "artifacts" / "model.pkl"
+            model_path = BASE_DIR / "backend" / "artifacts" / "model.pkl"
             print("model_path", model_path)
             print(model_path.exists())
             # preprocessor_path=os.path.join('artifacts','preprocessor.pkl')
-            preprocessor_path = BASE_DIR / "artifacts" / "preprocessor.pkl"
+            preprocessor_path = BASE_DIR / "backend" / "artifacts" / "preprocessor.pkl"
             logging.info(f"Model pkls loading started {features}")
             print("Paths", model_path, preprocessor_path,"path")
             model=load_object(file_path=model_path)
