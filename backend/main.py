@@ -57,10 +57,11 @@ def predict(data: carsInputModel.CarsInput):
                     data.super_charger, data.top_speed, data.max_power_delivered,
                     data.max_torque_delivered, data.feature_score )
         df = custm.getDataAsDataFrame()
+        print("df :", df)
         logging.info(df)
         pipe = PredictPipeline()
         res = pipe.predict(df)
-        # print(res, "result of predict")
+        print(res, "result of predict")
         if(res):
            return{ "selling_price" : int(res)}
         else:
