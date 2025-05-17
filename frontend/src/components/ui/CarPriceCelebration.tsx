@@ -18,7 +18,7 @@ export default function CarPriceCelebration({ price }: Props) {
   }, [price]);
 
   return (
-    <div className="relative flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-2xl min-h-[300px]">
+    <div className="relative flex flex-col items-center justify-center p-6 bg-white rounded-2xl shadow-2xl h-screen max-h-[486px]">
       {showConfetti && (
         <Confetti width={window.innerWidth} height={window.innerHeight} />
       )}

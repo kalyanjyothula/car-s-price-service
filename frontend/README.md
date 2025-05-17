@@ -59,3 +59,5 @@ configure docker file
 docker build -t test-app .
 
 docker run -p 8000:8000 test-app
+
+docker run -d -p 8000:8000 --name test-container test-app

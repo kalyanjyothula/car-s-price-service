@@ -102,7 +102,7 @@ export default function Home() {
       ([, value]) => !value
     );
 
-    console.log(missingFields, topSpeed, maxPower, maxTorque);
+    // console.log(missingFields, topSpeed, maxPower, maxTorque);
 
     if (
       missingFields.length > 0 ||
@@ -144,13 +144,12 @@ export default function Home() {
   };
 
   return (
-    <div className=" text-xl lg:text-3xl p-4 flex gap-4 flex-col bg-gray-200 h-screen">
+    <div className=" text-xl lg:text-3xl p-4 grid  grid-cols-3 gap-4 bg-gray-200 h-full">
       <div
-        className=" shadow-input-card 
-        border-gray-100 rounded-md border-2
+        className=" shadow-input-card border-gray-100 rounded-md border-2
         bg-white p-4"
       >
-        <div className=" grid grid-cols-4 gap-4 py-4">
+        <div className=" flex flex-col gap-4 py-4 max-h-[386px] overflow-y-scroll">
           <InputDropdown
             label="Purchase Year"
             selectLabel="Year"
@@ -165,34 +164,42 @@ export default function Home() {
             value={company}
             handleValueChange={handleCompany}
           />
-          <InputDropdown
-            label="Model"
-            selectLabel="Model"
-            value={model}
-            options={renderCarModels || ""}
-            handleValueChange={handleModelChange}
-          />
-          <InputDropdown
-            label="Gear Box"
-            selectLabel="Gear Box"
-            options={renderGearBox}
-            value={gearBox}
-            handleValueChange={setGearBox}
-          />
-          <InputDropdown
-            label="Seats"
-            selectLabel="Seats"
-            options={renderSeats}
-            value={seat}
-            handleValueChange={setSeat}
-          />
-          <InputDropdown
-            label="No of Cylinder"
-            selectLabel="No of Cylinder"
-            options={renderCylinder}
-            value={cylinders}
-            handleValueChange={setCylinders}
-          />
+          {company && (
+            <InputDropdown
+              label="Model"
+              selectLabel="Model"
+              value={model}
+              options={renderCarModels || ""}
+              handleValueChange={handleModelChange}
+            />
+          )}
+          {company && model && (
+            <InputDropdown
+              label="Gear Box"
+              selectLabel="Gear Box"
+              options={renderGearBox}
+              value={gearBox}
+              handleValueChange={setGearBox}
+            />
+          )}
+          {company && model && (
+            <InputDropdown
+              label="Seats"
+              selectLabel="Seats"
+              options={renderSeats}
+              value={seat}
+              handleValueChange={setSeat}
+            />
+          )}
+          {company && model && (
+            <InputDropdown
+              label="No of Cylinder"
+              selectLabel="No of Cylinder"
+              options={renderCylinder}
+              value={cylinders}
+              handleValueChange={setCylinders}
+            />
+          )}
           <InputRadioGroup
             label="Steering Type"
             radioGroup={steeringType}
@@ -234,11 +241,11 @@ export default function Home() {
             setSelected={setSelectedFeatures}
           />
         </div>
-        <Button className="cursor-pointer" onClick={handleCompute}>
+        <Button className="cursor-pointer mt-6" onClick={handleCompute}>
           Compute
         </Button>
       </div>
-      <div className="flex-1/2">
+      <div className="col-span-2">
         {result && <CarPriceCelebration price={+result} />}
       </div>
     </div>
