@@ -61,3 +61,8 @@ docker build -t test-app .
 docker run -p 8000:8000 test-app
 
 docker run -d -p 8000:8000 --name test-container test-app
+
+
+"mv-build": "npm run build && rmdir /s /q ..\\backend\\frontend && xcopy /E /I dist ..\\backend\\frontend" - windows cmd
+
+"mv-build": "npm run build && rm -rf ../backend/frontend && cp -r dist ../backend/frontend" - linux
