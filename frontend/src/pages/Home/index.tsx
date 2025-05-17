@@ -34,6 +34,8 @@ export default function Home() {
   const [topSpeed, setTopSpeed] = useState<number[]>([]);
   const [selectedFeatuers, setSelectedFeatures] = useState<string[]>([]);
 
+  const [loading, setLoading] = useState(false);
+
   const [result, setResult] = useState("");
 
   const renderCarModels = useMemo(() => carModels[company], [company]);
@@ -130,6 +132,7 @@ export default function Home() {
     };
 
     try {
+      setLoading(true);
       const res: any = await axios.post(`${import.meta.env.VITE_ML_ENDPOINT}`, {
         ...payload,
       });
@@ -137,9 +140,11 @@ export default function Home() {
       if (res.status === 200) {
         const { selling_price } = res?.data || {};
         if (selling_price) setResult(selling_price);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 
@@ -241,8 +246,12 @@ export default function Home() {
             setSelected={setSelectedFeatures}
           />
         </div>
-        <Button className="cursor-pointer mt-6" onClick={handleCompute}>
-          Compute
+        <Button
+          className="cursor-pointer mt-6"
+          onClick={handleCompute}
+          disabled={loading}
+        >
+          {loading ? "Computing ..." : "Compute"}
         </Button>
       </div>
       <div className="col-span-2">
