@@ -5,7 +5,10 @@ frontend/.env
 .vscode/
 backend/__pycache__/
 backend/catboost_info/
-backend/data/
+backend/data/cars_dekho_cleaned_data.csv
+backend/data/cars_dekho_raw_data.csv
 backend/dist/
 backend/frontend/
 backend/**/__pycache__/
+backend/data/.ipynb_checkpoints/cars_dekho_cleaned_data-checkpoint.csv
+backend/data/.ipynb_checkpoints/feature_enginnered_data-checkpoint.csv

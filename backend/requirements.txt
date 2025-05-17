@@ -7,8 +7,8 @@ joblib
 uvicorn
 fastapi 
 python-dotenv
-catboost
-xgboost
-
+# catboost
+# xgboost
+pathlib
 
 # -e .
