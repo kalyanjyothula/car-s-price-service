@@ -30,11 +30,18 @@ app.add_middleware(
 )
 
 
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent
+model_path = BASE_DIR / "artifacts" / "model.pkl"
 
-# model = joblib.load("artifacts\\model.pkl")
-model_path = os.path.join("artifacts", "model.pkl")
 model = joblib.load(model_path)
+
+print(f"Looking for model at: {model_path}")
+print(f"File exists? {model_path.exists()}")
+# model = joblib.load("artifacts\\model.pkl")
+# model_path = os.path.join("artifacts", "model.pkl")
+# model = joblib.load(model_path)
 
 
 @api_router.get("/data-test")
@@ -53,7 +60,11 @@ def predict(data: carsInputModel.CarsInput):
         logging.info(df)
         pipe = PredictPipeline()
         res = pipe.predict(df)
-        return{ "selling_price" : int(res)}
+        # print(res, "result of predict")
+        if(res):
+           return{ "selling_price" : int(res)}
+        else:
+            return { "selling_price" : "Not avalible with features !" }
    
     except Exception as e:
       CustomException(e, sys)
@@ -62,5 +73,8 @@ app.include_router(api_router, prefix="/api")
 
 
 reactBuild = os.getenv('REACT_APP_PATH')
+# print(BASE_DIR, "Base")
 if(reactBuild): 
-    app.mount('/', StaticFiles(directory=reactBuild, html=True))
+    fe_path = BASE_DIR / reactBuild  # correct way to join paths
+    # print(f"Serving frontend from: {fe_path}")
+    app.mount('/', StaticFiles(directory=fe_path, html=True))
